@@ -5,7 +5,21 @@ for(var i=0; i<num; i++){
     
     var buttonInner = this.innerHTML;
     
-    switch (buttonInner) {
+    makesound(buttonInner);
+    animation(buttonInner);
+
+});
+}
+
+document.addEventListener("keydown",function(event){
+    
+    makesound(event.key);
+    animation(event.key);
+
+});
+
+function makesound(key){
+    switch (key) {
         case "w":
             var tom1 = new Audio('sounds/tom-1.mp3');
             tom1.play();
@@ -38,9 +52,15 @@ for(var i=0; i<num; i++){
             break;
     }
 
-});
 }
 
+function animation(currentKey){ 
 
-//var a = new Audio('sounds/tom-1.mp3');
-//a.play();
+   var activebutton = document.querySelector("."+currentKey);
+   
+   activebutton.classList.add("pressed");
+   setTimeout(function(){
+        activebutton.classList.remove("pressed");
+   }, 100);
+
+}
